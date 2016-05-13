@@ -1,37 +1,33 @@
 # Overview
 
-SearchGuard SSL is a plugin for ElasticSearch which provides SSL encryption and authentication for ElasticSearch. It offers:
+Search Guard® SSL is a plugin for Elasticsearch which provides SSL/TLS encryption and authentication for Elasticsearch. It offers:
 
 * Node-to-node encryption through SSL/TLS (Transport layer)
 * Secure REST layer through HTTPS (SSL/TLS)
 * Supports JDK SSL and Open SSL
-* Only external dependency is Netty 4 (and Tomcat Native if Open SSL is used)
 * Works with Kibana 4, logstash and beats
 
-SearchGuard SSL is the foundation layer of SearchGuard, which adds authentication and authorization and is also available as an ElasticSearch plugin.
+The only external dependency is Netty 4 (and Tomcat Native if Open SSL is used)
 
-If you just need to encrpyt your traffic, and make sure only trusted nodes can join a cluster, SearchGuard SSL is all you need.
+Search Guard SSL is the foundation layer of Search Guard, which adds authentication and authorization and is also available as an Elasticsearch plugin from floragunn.
 
-If you additionally need authentication and authorization, you need both SearchGuard SSL + SearchGuard.
-
-**Please note that SearchGuard does not work without SearchGuard SSL.**
+If you just need to encrpyt your traffic, and make sure only trusted nodes and clients can join and access a cluster, Search Guard SSL is all you require. If you want authentication and authorization, you need both Search Guard SSL + Search Guard.
 
 In this document the following abbreviations are being used:
 
-* ES: ElasticSearch
+* ES: Elasticsearch
 * SG SSL: Search Guard SSL
-* SG: SearchGuard
+* SG: Search Guard
  
-This documentation refers only to SearchGuard 2.0 and above. SearchGuard for ES 1.x is not actively maintained anymore.
-
-For the sake of simplicity, we use the term **SSL** instead of **SSL/TLS** throughout this document.
+This documentation refers only to Search Guard 2.0 and above. Search Guard for ES 1.x is not actively maintained anymore.
 
 ## For the impatient
 
 If you just want to get up and running quickly, please refer to the [quickstart tutorial](2_quick_start.md)
+
 ## Motivation
 
-While ElasticSearch is often used for storing and searching sensitive data, it does not offer encryption or authentication/authorization out of the box. While it is possible to implement an authentication/authorization plugin without SSL encryption, we strongly believe that this will only get you fake security. 
+While Elasticsearch is often used for storing and searching sensitive data, it does not offer encryption or authentication/authorization out of the box. While it is possible to implement an authentication/authorization plugin without SSL/TLS encryption, we strongly believe that this will only get you fake security. 
 
 Obviously, by using SSL the traffic between ES nodes and the HTTP(S) traffic will be encrypted. Which means that
 
