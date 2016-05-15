@@ -1,21 +1,21 @@
-# SearchGuard SSL Documentation
+<<[frontmatter.md]
+
+<!--BREAK-->
 
 <!--TOC max2-->
 
-<<[0_overview.md]
+<<[overview.md]
 
-<<[1_in_detail.md]
+<<[installation.md]
 
-<<[2_quick_start.md]
+<<[quick_start.md]
 
-<<[3_installation.md]
+<<[certificates.md]
 
-<<[4_certificates.md]
+<<[cipher_suites.md]
 
-<<[5_configuration.md]
+<<[configuration.md]
 
-<<[6_openssl.md]
+<<[openssl.md]
 
-<<[7_troubleshooting.md]
-
-<<[8_vagrant.md]
+<<[troubleshooting.md]

@@ -6,17 +6,19 @@ This tutorial shows how to quickly set up SG SSL. Note that the settings and pas
 
 ## Install the plugin
 
-First, [install SG SSL](2_installation.md) for your particular ES version on each node. For installation instructions and to figure out which SG version you need for your Elasticsearch installation, please refer to the chapter [Installation](2_installation.md).
+First, [install SG SSL](installation.md) for your particular ES version on each node. For installation instructions and to figure out which SG version you need for your Elasticsearch installation, please refer to the chapter [Installation](installation.md).
 
 ## Generating the keystore and truststore
 
-For SSL to work, you have to place a **keystore** and a **truststore** containing all required certificates and keys on each node. SG comes with scripts that will generate all required files for you. The scripts have been tested on Linux and OSX.
+For SSL to work, you have to have a **keystore** and a **truststore** containing all required certificates and keys on each node. SG comes with scripts that will generate all these required files for you. The scripts have been tested on Linux and OSX.
 
-In our quickstart tutorial the truststore contains a generated Root CA certificate and can be used on all nodes equally. The keystore is generated for each node individually and contains the nodes own certificate plus its private key.
+In particular, the scripts will generate a truststore file containing a generated root certificate. This truststore file can be used on all nodes equally and has to be copied to the `config` directory on all nodes manually.
 
-Besides that, certificates for the REST layer to be installed on your browser are also generated.
+The script will also create three keystore files. Each node has to have its own, dedicated keystore file, since it contains the nodes own certificate plus its private key. For each node, copy one of the generated keystore files to the `config` directory manually.
 
-The script uses OpenSSL for generating all required artifacts. If you do not have OpenSSL already installed on your machine, please do so. If you cannot use OpenSSL on your machine, you'll need to find some other ways to obtain the required files. In this case, lease refer to the chapter [Certificates](4_cartificates.md). 
+In addition, certificates for the REST layer to be installed on your browser are also generated. These cetificates are only needed if you enable client authentication in the SG SSL configuration.
+
+The script uses OpenSSL for generating all required artifacts. If you do not have OpenSSL already installed on your machine, please do so. If you cannot use OpenSSL on your machine, you'll need to find some other ways to obtain the required files. In this case, lease refer to the chapter [Certificates](certificates.md). 
 
 In order to find out if you have OpenSSL installed, open a terminal and type
 
@@ -30,6 +32,8 @@ In order to generate the required artifacts, please execute the following steps:
 
 ### Download SG SSL or clone the repository
 
+In order to obtain and run the scripts, you need to download the SG SSL source code onto your machine.
+
 If you have git installed on your machine, open a terminal, and change to the directory where you want to download SG SSL. Type:
 
 ```
@@ -40,16 +44,22 @@ You should see something like:
 
 ```
 Cloning into 'search-guard-ssl'...
-...
 ```
 
-on the command line. The repository is now downloaded on your computer.
+on the command line. The repository is now being downloaded on your computer.
 
 If you do not have git installed, and do not want to install it, you can also download the source files as a zip archive directly from github. First, visit the repository at this URL: 
 
 ```
 https://github.com/floragunncom/search-guard-ssl
 ```
+
+Choose the version to download:
+
+![Download SG as zip archive](images/choose_version_github.jpg)
+
+In order to figure out which SG SSL version you need for your particular ES version, refer to the chapter ["Installation"](installation.md), or visit the version matrix at our [github Wiki](https://github.com/floragunncom/search-guard-ssl/wiki)
+
 Use the "Download as zip" button to download the archive:
 
 ![Download SG as zip archive](images/download_sg_as_zip.png)
@@ -58,7 +68,7 @@ Save and unzip the archive in a directory of your choice.
 
 ### Execute the example script
 
-Open a terminal and cd into the directory where you downloaded or extracted the SG SSL repository to. You'll find a folder called `example-pki-scripts`. Change to this folder.
+Open a terminal and cd into the directory where you downloaded or extracted the SG SSL source code to. You'll find a folder called `example-pki-scripts`. Change to this folder.
 
 The script we need to execute is called `./example.sh`. Make sure you have execute permissions on this file (chmod the permissions if needed) and execute it. All required artifacts are now generated. If execution was successful, you'll find a couple of generated files and folders inside the `example-pki-scripts` folder.
 
@@ -95,7 +105,7 @@ elasticsearch-2.2.0
 ```
 ## Configuring the plugin
 
-SG SSL is configured in the `config/elasticsearch.yml` file of your ES installation. Add the following lines to this file, and do so for all nodes: 
+SG SSL is configured in the `config/elasticsearch.yml` file of your ES installation. Stop any running ES node and add the following lines to this file. It does not matter where in the config file you add them, so we'll just append them to the end.
 
 ```
 searchguard.ssl.transport.keystore_filepath: node-0-keystore.jks
@@ -105,7 +115,7 @@ searchguard.ssl.transport.truststore_password: changeit
 searchguard.ssl.transport.enforce_hostname_verification: false
 ```
 
-Note that you have to adjust the name of the keystore file (`node-0-keystore.jks` in this example) for each node separately. So on your first ES node you'd use 
+This has to be done for all nodes of your cluster. Note that you have to adjust the name of the keystore file (`node-0-keystore.jks` in this example) for each node separately. So on your first ES node you'd use 
 
 ```
 searchguard.ssl.transport.keystore_filepath: node-0-keystore.jks
@@ -128,7 +138,7 @@ INFO: Open SSL not available because of java.lang.ClassNotFoundException:
  org.apache.tomcat.jni.SSL
 ```
 
-This simply means that you use JCE (Java Cryptography extensions) as your SSL implementation. On startup, SG looks for OpenSSL support on your system via the netty-tcnative library. Since we have not installed it yet, SG falls back to the built-in Java SSL implementation.
+This simply means that you use JCE (Java Cryptography extensions) as your SSL implementation. On startup, SG looks for OpenSSL support on your system. Since we have not installed it yet, SG falls back to the built-in Java SSL implementation.
 
 ```
 WARN: AES 256 not supported, max key length for AES is 128. 
@@ -150,7 +160,7 @@ http://127.0.0.1:9200/
 This should give you some information about ES in JSON format. You can also display some configuration information from SG SSL directly by visiting:
 
 ```
-https://127.0.0.1:9200/_searchguard/sslinfo?pretty
+http://127.0.0.1:9200/_searchguard/sslinfo?pretty
 ```
 
 Which should display something like this:
@@ -165,7 +175,7 @@ Now that the traffic between the nodes is TLS-encrypted, we want to make sure th
 
 There is one difference though: We said earlier that each node has to authenticate itself in order to being able to join the cluster. For a browser talking HTTPS to ES this so called "client authentication" is optional. We will set it up later.
 
-In order to activate and configure HTTPS, add the following lines to the `config/Elasticsearch.yml` file of your ES installation on each node:
+In order to activate and configure HTTPS, stop any running nodes and add the following lines to the end of your `config/elasticsearch.yml` file of your ES installation on each node:
 
 ```
 searchguard.ssl.http.enabled: true
@@ -179,7 +189,7 @@ You'll notice that this configuration is nearly identical with the transport lay
 
 Now start your node(s) and try to connect with HTTP first:
 
-**Note: The generated certificates are valid for the IP `127.0.0.1` only. So, in the following examples, do not use `localhost`, but `127.0.0.1` instead.**
+**Note: The generated certificates are valid for the IP `127.0.0.1` only. So, in the following examples, do not use `localhost`, but `127.0.0.1` instead. If you use localhost, you'll see an error message in the browser like: "The certificate is only valid for the following names: node-0.example.com, 127.0.0.1 ..."**
 
 ```
 http://127.0.0.1:9200/
@@ -216,16 +226,14 @@ While it is common for HTTPS that only the servers identity is verified, SSL is 
 First, let's enable client authentication. Add the following line to the `config/elasticsearch.yml` file of your ES installation on each node:
 
 ```
-searchguard.ssl.http.enforce_clientauth: true
+searchguard.ssl.http.clientauth_mode: REQUIRE
 ```
 
-After restarting the node(s), try again to connect via your browser. You should see an error message like this:
+After restarting the node(s), try again to connect via your browser. You should see an error message like "Certificate-based authentication failed".
 
-![Client authenticatin failed](images/client_authentication_failed.png)
+This means that SG SSL is asking your browser to identify itself. Since we have not installed any certificate for that purpose so far, the client cannot do so and SG SSL rejects the connection.
 
-This means that SG SSL is asking your browser to identify itself. Since we have not installed any certificate for that purpose so far, SG SSL rejects the connection.
-
-Similar to importing the Root CA, we now need to install a certificate that the server trusts. The `example.sh` script also generated those for us. The certificates are called `kirk` and `spock`. They have generated in different formats. Which one you need to use again depends on your browser and OS.
+Similar to importing the Root CA, we now need to install a certificate that your ES nodes trust. The `example.sh` script also generated those for us. The certificates are called `kirk` and `spock`, and have been generated using the same root CA as for the node certificates. The client certificates have been generated in different formats. Which one you need to use again depends on your browser and OS.
 
 After importing either one of the certificates, try to connect to ES again with your browser. This time, the browser asks you which certificate you want to us to identify yourself:
 

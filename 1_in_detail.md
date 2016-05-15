@@ -1,5 +1,0 @@
-# SG SSL in detail
-
-...
-
-

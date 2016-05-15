@@ -1,0 +1,1 @@
+![](images/sg_ssl.png)
