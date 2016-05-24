@@ -27,6 +27,7 @@ openssl version
 ```
 
 If installed, this should print out the version number of your OpenSSL installation.
+Make sure its at least version 1.0.1k.
 
 In order to generate the required artifacts, please execute the following steps:
 
@@ -72,7 +73,7 @@ Open a terminal and cd into the directory where you downloaded or extracted the 
 
 The script we need to execute is called `./example.sh`. Make sure you have execute permissions on this file (chmod the permissions if needed) and execute it. All required artifacts are now generated. If execution was successful, you'll find a couple of generated files and folders inside the `example-pki-scripts` folder.
 
-**If for any reason you need to re-execute the script, execute `./cleanup.sh` in the same directory first. This will remove all generated files automatically.**
+**If for any reason you need to re-execute the script, execute `./clean.sh` in the same directory first. This will remove all generated files automatically.**
 
 ## Copying the keystore and truststore files
 
