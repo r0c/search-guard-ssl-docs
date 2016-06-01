@@ -1,3 +1,7 @@
+<!---
+Copryight 2016 floragunn UG (haftungsbeschränkt)
+-->
+
 # Certificates
 
 As described in the [quickstart tutorial](quickstart.md), you can always use our `example.sh` script to generate a root CA and all required certificates. The `example.sh` basically just executes three other scripts:

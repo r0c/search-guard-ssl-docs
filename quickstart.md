@@ -1,3 +1,7 @@
+<!---
+Copryight 2016 floragunn UG (haftungsbeschränkt)
+-->
+
 # Quick Start
 
 ## A note on security

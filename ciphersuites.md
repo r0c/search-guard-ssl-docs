@@ -1,3 +1,7 @@
+<!---
+Copryight 2016 floragunn UG (haftungsbeschränkt)
+-->
+
 # Enabled SSL ciphers and protocols
 
 By default the following SSL cipher suites and protocols are enabled:

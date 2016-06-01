@@ -1,3 +1,7 @@
+<!---
+Copryight 2016 floragunn UG (haftungsbeschränkt)
+-->
+
 # Overview
 
 Search Guard® SSL is a plugin for Elasticsearch which provides SSL/TLS encryption and authentication. It offers:

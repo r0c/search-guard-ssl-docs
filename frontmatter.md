@@ -1,3 +1,7 @@
+<!---
+Copryight 2016 floragunn UG (haftungsbeschränkt)
+-->
+
 ![](images/sg_ssl.png)
 
 <br />

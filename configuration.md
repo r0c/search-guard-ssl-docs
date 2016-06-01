@@ -1,3 +1,7 @@
+<!---
+Copryight 2016 floragunn UG (haftungsbeschränkt)
+-->
+
 # Configuration
 
 All configuration settings for SG SSL need to be placed in `config/elasticsearch.yml`. The SG SSL repository contains a configuration template (`searchguard-ssl-config-template.yml`) with all configuration options available. It's located at the root of the repository.

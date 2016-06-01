@@ -1,3 +1,7 @@
+<!---
+Copryight 2016 floragunn UG (haftungsbeschränkt)
+-->
+
 # Troubleshooting
 
 ### Exception in thread "main" ElasticsearchException[No such keystore file ...]

@@ -1,3 +1,7 @@
+<!---
+Copryight 2016 floragunn UG (haftungsbeschränkt)
+-->
+
 # OpenSSL setup
 
 Search Guard SSL can use Open SSL as the SSL implementation. This will result in better performance and better support for strong and modern cipher suites. With Open SSL its also possible to use strong chipers without installing Java Cryptography Extension (JCE) Unlimited Strength Jurisdiction Policy Files. 

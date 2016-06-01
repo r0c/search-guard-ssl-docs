@@ -1,3 +1,7 @@
+<!---
+Copryight 2016 floragunn UG (haftungsbeschränkt)
+-->
+
 # Search Guard 2 SSL Documentation
 
 This is the official documentation for Search Guard 2 SSL. If you find any errors, or want to contribute, feel free to fork this repository and issue pull requests.
