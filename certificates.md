@@ -24,22 +24,22 @@ The configuration settings for the Root CA are located in the `example-pki-scrip
 
 You should revise especially this section: 
 
-<pre>
+```
 [ ca_dn ]
 0.domainComponent       = "com"
 1.domainComponent       = "example"
 organizationName        = "Example Com Inc."
 organizationalUnitName  = "Example Com Inc. Root CA"
 commonName              = "Example Com Inc. Root CA"
-</pre>
+```
 
 And change the example values according to your needs.
 
 In order to generate the root CA, execute the script `example-pki-scripts/gen_root_ca.sh` like:
 
-<pre>
+```
 ./gen_root_ca.sh capassword_use_a_strong_one truststorepassword
-</pre>
+```
 
 The script expects two paramaters, the CA password and the truststore password. 
 
@@ -53,14 +53,14 @@ If you used the `example-pki-scripts/gen_root_ca.sh`, it already created a ready
 
 If you created the root certificate (chain) some other way, or if your company already has a root certificate (chain) in place, you can create the truststore manually. Get your root certificate chain (this means the root certificate itself and intermediate signing certificates if they exist) in PEM format and execute the following command:
 
-<pre>
+```
 keytool  \
     -importcert \
     -file chain-ca.pem  \
     -keystore truststore.jks   \
     -storepass mysecret_ts_passwd  \
     -noprompt -alias root-ca
-</pre>
+```
 
 In both cases, distribute the generated `truststore.jks` file to the `config` directory of all participating nodes of your cluster.
 
@@ -89,7 +89,7 @@ You can also use Javas keytool to generate keys and CSRs:
 
 Generate a new key:
 
-<pre>
+```
 keytool -genkey \
         -alias     NODE_NAME \
         -keystore  NODE_NAME-keystore.jks \
@@ -99,12 +99,12 @@ keytool -genkey \
         -validity  712 \
         -keypass mykspassword \
         -storepass mykspassword \
-        -dname "CN=nodehostname.example.com, OU=department, O=company, L=localityName, C=US"
-</pre>
-[//]: # (_comment: SAN dns attribute is very important here, dname CN is more or less deprecated)
+        -dname "CN=nodehostname.example.com, OU=department, O=company, L=localityName, C=US" \
+        -ext san=dns:nodehostname.example.com 
+```
 
 Generate a CSR (Certificate signing request):
-<pre>
+```
 keytool -certreq \
         -alias      NODE_NAME \
         -keystore   NODE_NAME-keystore.jks \
@@ -112,15 +112,14 @@ keytool -certreq \
         -keyalg     rsa \
         -keypass mykspassword \
         -storepass mykspassword \
-        -dname "CN=nodehostname.example.com, OU=department, O=company, L=localityName, C=US"
-</pre>
-[//]: # (_comment: SAN dns attribute is very important here, dname CN is more or less deprecated)
-
+        -dname "CN=nodehostname.example.com, OU=department, O=company, L=localityName, C=US" \
+        -ext san=dns:nodehostname.example.com 
+```
 The important part here is CN=nodehostname.example.com This has to be the full qualified hostname of your node, or the ip address if no DNS entry exists.
 
 You can now sign it with your root CA by using the following command:
 
-<pre>
+```
 openssl ca \
     -in NODE_NAME.csr \
     -notext \
@@ -130,7 +129,7 @@ openssl ca \
     -batch \
 	-passin pass:capassword_use_a_strong_one \
 	-extensions server_ext 
-</pre>
+```
 
 Alternatively, send the CSR to someone in your organization who can sign it with the root CA.
 
@@ -138,14 +137,14 @@ Alternatively, send the CSR to someone in your organization who can sign it with
 
 You can now import the signed certificates along with the intermediate certificates (if any) to the keystore. 
 
-<pre>
+```
 cat ca/chain-ca.pem NODE_NAME-signed.pem | keytool \
     -importcert \
     -keystore NODE_NAME-keystore.jks \
     -storepass mykspassword \
     -noprompt \
     -alias NODE_NAME
-</pre>
+```
 
 Distribute `NODE_NAME-keystore.jks` to the appropriate node and put it into the config/ folder
 

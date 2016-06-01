@@ -1,4 +1,4 @@
-# Installing SG SSL
+# Installing Search Guard SSL
 
 ## Prerequisites
 
@@ -56,12 +56,20 @@ Before installing the plugin, stop your ES node(s) if necessary.
 
 SG SSL can be installed it like any [other Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/plugins/2.2/plugin-management.html) plugin. Change to the installation directory of ES, and execute:
 
-* bin/plugin install com.floragunn/search-guard-ssl/<version> OR
-* sudo bin/plugin install com.floragunn/search-guard-ssl/<version>
+```
+bin/plugin install com.floragunn/search-guard-ssl/<version>
+```
 
-"&lt;version&gt;" is for example 2.3.1.8 (NOT v2.3.1.8)
+"&lt;version&gt;" is for example 2.3.2.9 (NOT v2.3.2.9)
+
+Example:
+
+```
+bin/plugin install com.floragunn/search-guard-ssl/2.3.2.9
+```
 
 Accept the following warning message by typing "y" (since ES >= 2.2)
+
 
 ```
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -76,49 +84,11 @@ See http://docs.oracle.com/javase/8/docs/technotes/guides/security/permissions.h
 for descriptions of what these permissions allow and the associated risks.
 ```
 
-[//]: # #### From github
-
-[//]: # (_comment: !! this cannot work cause zips from github contains only source code.)
-[//]: # (_comment: !! the zip which contains also the binaries are in maven central)
-[//]: # Navigate to the SG SSL github repository ([https://github.com/floragunncom/search-guard-ssl](https://github.com/floragunncom/search-guard-ssl)), and choose the version to download:
-
-[//]: # ![Download SG as zip archive](images/choose_version_github.jpg)
-
-[//]: # Albeit optional, we strongly recommend to verify the integrity of the downloaded zip file. We provide PGP signatures for every release file. This signature should be matched against the KEYS file contained in the downloaded zip file. We also provide MD5 and SHA-1 checksums for every release file. After you download the zip, you should calculate a checksum for your download, and make sure it is the same as ours. For a how-to on verifying pgp signatures, please look here:
-
-[//]: # * [http://www.openoffice.org/download/checksums.html](http://www.openoffice.org/download/checksums.html)
-[//]: # * [https://www.apache.org/info/verification.html](https://www.apache.org/info/verification.html)
-
-[//]: # After the integrity was verified, navigate to the installation directory of ES and type:
-
-[//]: # ```
-[//]: # bin/plugin -u file:///path/to/search-guard-<version>.zip -i search-guard
-[//]: # ```
-
-#### From maven (online)
-
-Refer to [here](https://github.com/floragunncom/search-guard-ssl/wiki) to figure out which version you need.
-
-```
-bin/plugin install com.floragunn/search-guard-ssl/<version>
-```
-
-Example:
-
-```
-bin/plugin install com.floragunn/search-guard-ssl/2.3.2.9
-```
-
-#### From maven (offline)
-
-Refer to [here](https://github.com/floragunncom/search-guard-ssl/wiki) to figure out which version you need.
-
-Download the **zip** from [maven central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-ssl%22). 
+Alternatively, you can download the **zip** from [Maven Central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-ssl%22) and install it offline by typing: 
 
 ```
 bin/plugin install file:///path/to/search-guard-ssl-<version>.zip
 ```
-
 ## Next steps
 
 After performing these steps, SG SSL is installed. Next:

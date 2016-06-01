@@ -2,14 +2,14 @@
 
 ### Exception in thread "main" ElasticsearchException[No such keystore file ...]
 
-<pre>
+```
 Exception in thread "main" ElasticsearchException[No such keystore file /Users/jkressin/Development/elasticsearch-2.1.0/config/node-01-keystore.jks]
 	at com.floragunn.searchguard.ssl.SearchGuardKeyStore.initSSLConfig(SearchGuardKeyStore.java:172)
 	at com.floragunn.searchguard.ssl.SearchGuardKeyStore.<init>(SearchGuardKeyStore.java:129)
 	at com.floragunn.searchguard.ssl.SearchGuardSSLModule.<init>(SearchGuardSSLModule.java:29)
 	at com.floragunn.searchguard.ssl.SearchGuardSSLPlugin.nodeModules(SearchGuardSSLPlugin.java:89)
 ...
-</pre>
+```
 
 The path to the keystore file is incorrect. Please check the settings for the configuration key 
 
@@ -21,13 +21,13 @@ The value of this key is the path to the keystore file, **relative to the config
 
 ### Exception in thread "main" ElasticsearchException[No such truststore file ...]
 
-<pre>
+```
 Exception in thread "main" ElasticsearchException[No such truststore file /Users/jkressin/Development/elasticsearch-2.1.0/config/truststorea.jks]
 	at com.floragunn.searchguard.ssl.SearchGuardKeyStore.initSSLConfig(SearchGuardKeyStore.java:182)
 	at com.floragunn.searchguard.ssl.SearchGuardKeyStore.<init>(SearchGuardKeyStore.java:129)
 	at com.floragunn.searchguard.ssl.SearchGuardSSLModule.<init>(SearchGuardSSLModule.java:29)
 	at com.floragunn.searchguard.ssl.SearchGuardSSLPlugin.nodeModules(SearchGuardSSLPlugin.java:89)
-</pre>
+```
 
 The path to the truststore file is incorrect. Please check the settings for the configuration key 
 
@@ -39,7 +39,7 @@ The value of this key is the path to the truststore file, **relative to the conf
 
 ### java.io.IOException: DerInputStream.getLength(): lengthTag=..., too big.
 
-<pre>
+```
 Exception in thread "main" ElasticsearchException[DerInputStream.getLength(): lengthTag=109, too big.]; nested: IOException[DerInputStream.getLength(): lengthTag=109, too big.];
 Likely root cause: java.io.IOException: DerInputStream.getLength(): lengthTag=109, too big.
 	at sun.security.util.DerInputStream.getLength(DerInputStream.java:561)
@@ -50,7 +50,7 @@ Likely root cause: java.io.IOException: DerInputStream.getLength(): lengthTag=10
 	at com.floragunn.searchguard.ssl.SearchGuardKeyStore.initSSLConfig(SearchGuardKeyStore.java:192)
 	at com.floragunn.searchguard.ssl.SearchGuardKeyStore.<init>(SearchGuardKeyStore.java:129)
 	at com.floragunn.searchguard.ssl.SearchGuardSSLModule.<init>(SearchGuardSSLModule.java:29)
-</pre>
+```
 
 SG SSL supports keystore/truststore files in either JKS or PKCS12 format. This exception means that the format you specified in the confoguration does not match the actual format of your keystore/truststore file. Please check the following configuration keys
 
@@ -61,7 +61,7 @@ Make sure it matches your keystore/truststore file format.
 
 ### java.security.UnrecoverableKeyException: Password verification failed
 
-<pre>
+```
 xception in thread "main" ElasticsearchException[Keystore was tampered with, or password was incorrect]; nested: IOException[Keystore was tampered with, or password was incorrect]; nested: UnrecoverableKeyException[Password verification failed];
 Likely root cause: java.security.UnrecoverableKeyException: Password verification failed
 	at sun.security.provider.JavaKeyStore.engineLoad(JavaKeyStore.java:770)
@@ -70,7 +70,7 @@ Likely root cause: java.security.UnrecoverableKeyException: Password verificatio
 	at com.floragunn.searchguard.ssl.SearchGuardKeyStore.initSSLConfig(SearchGuardKeyStore.java:192)
 	at com.floragunn.searchguard.ssl.SearchGuardKeyStore.<init>(SearchGuardKeyStore.java:129)
 	at com.floragunn.searchguard.ssl.SearchGuardSSLModule.<init>(SearchGuardSSLModule.java:29)
-</pre>
+```
 
 This simply means that the password for the keystore and/or truststore you provided in the configuration does not match the actual passord of your keystore/truststore. Check the following configuration entries to make sure the passwords are correct:
 
@@ -79,7 +79,7 @@ This simply means that the password for the keystore and/or truststore you provi
 
 ### java.security.cert.CertificateException: No subject alternative names matching ... found
 
-<pre>
+```
 Caused by: java.security.cert.CertificateException: No subject alternative names matching IP address ... found
 	at sun.security.util.HostnameChecker.matchIP(HostnameChecker.java:154)
 	at sun.security.util.HostnameChecker.match(HostnameChecker.java:91)
@@ -88,7 +88,7 @@ Caused by: java.security.cert.CertificateException: No subject alternative names
 	at sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:252)
 	at sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:136)
 	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1465)
-</pre>
+```
 
 This error is caused by a missing or invalid subject alternatice name (SAN) entry in the certificate, and only shows if hostname verification is enabled in the configuration (which is the default):
 
@@ -106,7 +106,7 @@ Alternatively, you can disable hostname verification:
 
 ### java.security.cert.CertificateException: No subject alternative DNS name matching ... found.
 
-<pre>
+```
 Caused by: java.security.cert.CertificateException: No subject alternative DNS name matching ... found.
 	at sun.security.util.HostnameChecker.matchDNS(HostnameChecker.java:191)
 	at sun.security.util.HostnameChecker.match(HostnameChecker.java:93)
@@ -115,7 +115,7 @@ Caused by: java.security.cert.CertificateException: No subject alternative DNS n
 	at sun.security.ssl.X509TrustManagerImpl.checkTrusted(X509TrustManagerImpl.java:252)
 	at sun.security.ssl.X509TrustManagerImpl.checkServerTrusted(X509TrustManagerImpl.java:136)
 	at sun.security.ssl.ClientHandshaker.serverCertificate(ClientHandshaker.java:1465)
-</pre>
+```
 
 If you enabled hostname verification in the configuration:
 

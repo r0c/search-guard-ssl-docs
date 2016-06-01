@@ -8,11 +8,11 @@
 
 <<[installation.md]
 
-<<[quick_start.md]
+<<[quickstart.md]
 
 <<[certificates.md]
 
-<<[cipher_suites.md]
+<<[ciphersuites.md]
 
 <<[configuration.md]
 

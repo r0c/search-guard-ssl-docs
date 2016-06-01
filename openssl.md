@@ -20,10 +20,10 @@ To enable native support for Open SSL follow these steps:
 
 If you did all the steps above and start your nodes, you should see an entry similar to this in the logfile:
 
-<pre>
+```
 [INFO ][com.floragunn.searchguard.ssl.SearchGuardKeyStore] Open SSL OpenSSL 1.0.2d 9 Jul 2015 available
 [INFO ][com.floragunn.searchguard.ssl.SearchGuardKeyStore] Open SSL available ciphers [ECDHE-RSA-AES256-GCM-SHA384,...
-</pre>
+```
 
 If you face one of the following messages OpenSSL is not available and Search Guard SSL will use the built-in Java SSL implementation:
 

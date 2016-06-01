@@ -60,14 +60,11 @@ The public key is then used for the actual encryption.
 
 #### Trust Hierarchies
 
-[//]: # (_comment: with an end entity certificate do you not sign other certificates)
 A certificate can be used to issue and sign other certificates, building a trust hierarchy amongst these certificates. The certificates can be **intermediate root certificates** or **end entity certificates**.
 
 A **root certificate**, issued by a **root certificate authority (root CA)** is at root of this hierarchy. A certificate authority represents a **trusted third party** authority, trusted both by the owner of the certificate and communication partner. All major browser come with a pre-installed list of trusted certificate authorities, like Thawte, GlobalSign, DigiCert or Comodo. 
 
-A root CA uses its own certificate to issue other certificates. An intermediate root certificate can be used to issue other certifictes, while an end entity certificate is intended to be installed directly on a server directly.  
-
-(Bild)
+A root CA uses its own certificate to issue other certificates. An intermediate root certificate can be used to issue other certifictes, while an end entity certificate is intended to be installed directly on a server directly. With an end entity certificate do you not sign other certificates.
 
 If a TLS session is to be established, all certificates in the hierarchy are verified, up to the root certificate. The communication partner is only trusted if each certificate in this chain is trusted.
 
@@ -85,7 +82,6 @@ The details of this handshake can vary slighty, depending on the selected cipher
 * If the certificate could be verified, the client sends a "PreMasterSecret" to compute a common secret, called the "master secret". This master secret is used for encrypting the traffic. The PreMasterSecret is encrypted using the public key of the server certificate.
 * The server tries to decrypt the clients message using its private key. If this fails, the handshake is considered as failed
 * If decryption succeeds, the handshake is complete, and all traffic is encrypted using the master secret.
-[//]: # (_comment: hostname validation/SAN attributes validation is missing)
 
 While at this point the servers identity is verified, the clients identity is not, since it never sent any information regarding its own identity. But this is possible too and it is called **Client Authentication** (aka **Mutual authentication** or **two-way authentication**) and is an optional part of the handshake protocol. If the server is configured to use client authentication, the following steps are added in the handshake:
 
@@ -110,12 +106,9 @@ The other node uses the root CAs stored in the truststore to verify the other no
 
 This of course is performed in both ways, because a node acts as a "client" and "server" at the same time: It sends requests to other nodes, acting as a client, and receives request, acting as a server.
 
-(Bild)
-
 ## Minimal setup
 
-[//]: # (_comment: technically spoken root ca is not mandatory)
-A minimal SG SSL setup looks like this:
+A minimal SG SSL setup might look like this:
 
 ### Root CA
 
@@ -133,3 +126,4 @@ For each node, you create a keystore and a truststore file. The keystore contain
 
 Add the configuration settings of SG SSL to the elasticsearch configuration, adjust it to your needs, and start the node.
 
+**Note: Technically speaking, a Root CA is not really mandatory. You could as well just distribute the certificates of all nodes to the truststore of all nodes. While this would work, it's highly impractical. That is why we are not dig into this scenario any deeper.**
