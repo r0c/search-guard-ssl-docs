@@ -101,6 +101,7 @@ keytool -genkey \
         -storepass mykspassword \
         -dname "CN=nodehostname.example.com, OU=department, O=company, L=localityName, C=US"
 </pre>
+[//]: # (_comment: SAN dns attribute is very important here, dname CN is more or less deprecated)
 
 Generate a CSR (Certificate signing request):
 <pre>
@@ -113,6 +114,7 @@ keytool -certreq \
         -storepass mykspassword \
         -dname "CN=nodehostname.example.com, OU=department, O=company, L=localityName, C=US"
 </pre>
+[//]: # (_comment: SAN dns attribute is very important here, dname CN is more or less deprecated)
 
 The important part here is CN=nodehostname.example.com This has to be the full qualified hostname of your node, or the ip address if no DNS entry exists.
 
