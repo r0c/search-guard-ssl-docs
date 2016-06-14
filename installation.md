@@ -98,7 +98,7 @@ bin/plugin install file:///path/to/search-guard-ssl-<version>.zip
 After performing these steps, SG SSL is installed. Next:
 
 * Create and install the SSL certificates on each node
- * see chapters ["Quickstart"](quick_start.md) and ["Certificates"](certificates.md)
+ * see chapters ["Quickstart"](quickstart.md) and ["Certificates"](certificates.md)
 * Configure SG SSL
  * see chapter ["Configuration"](configuration.md) 
 * Start your nodes and enjoy the added security
