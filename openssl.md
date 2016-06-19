@@ -8,6 +8,10 @@ Search Guard SSL can use Open SSL as the SSL implementation. This will result in
 
 To enable native support for Open SSL follow these steps:
 
+## Dynamically linked
+
+**(Open SSL and Apache Portable Runtime needs to be installed)**
+
 * Install latest OpenSSL version on every node (make sure its at least version 1.0.1k.)
  *  [https://www.openssl.org/community/binaries.html](https://www.openssl.org/community/binaries.html)
 * Install Apache Portable Runtime (libapr1) on every node
@@ -21,6 +25,18 @@ To enable native support for Open SSL follow these steps:
 * Check that you have enabled OpenSSL in the configuration
  * `searchguard.ssl.transport.enable_openssl_if_available: true`
  * `searchguard.ssl.http.enable_openssl_if_available: true`
+
+## Statically linked
+
+**(Only works for linux, does not need Open SSL/Apache Portable Runtime to be installed)**
+
+
+
+* Download [netty-tcnative-openssl-static-1.1.33.Fork16-fg01-linux-x86_64.jar
+](https://github.com/floragunncom/sg-assets/blob/master/netty-tcnative-openssl-static-linux-x86_64/netty-tcnative-openssl-static-1.1.33.Fork16-fg01-linux-x86_64.jar?raw=true) 
+* Follow step 4-7 above
+
+## Troubleshooting
 
 If you did all the steps above and start your nodes, you should see an entry similar to this in the logfile:
 
