@@ -36,7 +36,7 @@ To enable native support for Open SSL follow these steps:
 ](https://github.com/floragunncom/sg-assets/blob/master/netty-tcnative-openssl-static-linux-x86_64/netty-tcnative-openssl-static-1.1.33.Fork16-fg01-linux-x86_64.jar?raw=true) 
 * Follow step 4-7 above
 
-## Troubleshooting
+## Troubleshooting 
 
 If you did all the steps above and start your nodes, you should see an entry similar to this in the logfile:
 
