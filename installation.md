@@ -33,24 +33,7 @@ where:
 * e2: Elasticsearch Fix Version
 * sgv: Search Guard SSL Version
 
-The following table illustrated which SG SSL version you need for a particular ES version:
-
-| ES version        | SG SSL version |
-| ------------- |:-------------:| 
-| 1.x.y      | not supported |
-| 2.0      | not supported      |
-| 2.0.1 | not supported      |
-| 2.0.2 | 2.0.2.5      |
-| 2.1.0 | 2.1.0.5      |
-| 2.1.1 | 2.1.1.5      |
-| 2.1.2 | 2.1.2.5      |
-| 2.2.0 | 2.2.0.6      |
-|2.2.1	|2.2.1.7 |
-|2.3.1	|2.3.1.8|
-|2.3.2	|2.3.2.9|
-
-For an up-to-date version matrix, you can always refer to the [Wiki on github](https://github.com/floragunncom/search-guard-ssl/wiki)
-
+For knowing which SG SSL version you need for a particular ES version refer to the [version matrix](https://github.com/floragunncom/search-guard-ssl/wiki#user-content-version-matrix) in the wiki.
 
 ### Install the plugin
 
