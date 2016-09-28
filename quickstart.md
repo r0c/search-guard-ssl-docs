@@ -31,7 +31,7 @@ openssl version
 ```
 
 If installed, this should print out the version number of your OpenSSL installation.
-Make sure its at least version 1.0.1k.
+Make sure it's at least version 1.0.1k.
 
 In order to generate the required artifacts, please execute the following steps:
 
@@ -76,6 +76,9 @@ Save and unzip the archive in a directory of your choice.
 Open a terminal and cd into the directory where you downloaded or extracted the SG SSL source code to. You'll find a folder called `example-pki-scripts`. Change to this folder.
 
 The script we need to execute is called `./example.sh`. Make sure you have execute permissions on this file (chmod the permissions if needed) and execute it. All required artifacts are now generated. If execution was successful, you'll find a couple of generated files and folders inside the `example-pki-scripts` folder.
+
+####Dealing with "keytool command not found" error
+Depending on your JDK type and `PATH` configuration, you may get this error after executing `./example.sh`. To fix it, replace the path to each call of `keytool` in `gen_client_node_cert.sh`,`gen_node_cert.sh`, and `gen_root_ca.sh`. You can find the path to keytool (if installed on your system) by using `locate keytool`. However, for Oracle JDKs, it is located in `~path_to_jdk/bin`.
 
 **If for any reason you need to re-execute the script, execute `./clean.sh` in the same directory first. This will remove all generated files automatically.**
 
