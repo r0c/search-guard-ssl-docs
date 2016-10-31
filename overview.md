@@ -68,7 +68,7 @@ A certificate can be used to issue and sign other certificates, building a trust
 
 A **root certificate**, issued by a **root certificate authority (root CA)** is at root of this hierarchy. A certificate authority represents a **trusted third party** authority, trusted both by the owner of the certificate and communication partner. All major browser come with a pre-installed list of trusted certificate authorities, like Thawte, GlobalSign, DigiCert or Comodo. 
 
-A root CA uses its own certificate to issue other certificates. An intermediate root certificate can be used to issue other certifictes, while an end entity certificate is intended to be installed directly on a server directly. With an end entity certificate do you not sign other certificates.
+A root CA uses its own certificate to issue other certificates. An intermediate root certificate can be used to issue other certifictes, while an end entity certificate is intended to be installed directly on a server. With an end entity certificate do you not sign other certificates.
 
 If a TLS session is to be established, all certificates in the hierarchy are verified, up to the root certificate. The communication partner is only trusted if each certificate in this chain is trusted.
 
@@ -79,7 +79,7 @@ Before any user data is sent between these parties, first a **TLS session** has 
 The details of this handshake can vary slighty, depending on the selected cipher suite, but at a very high level the following steps are performed:
 
 * The client sends a ClientHello message, containing the information which TLS version and cipher protocols it supports
-* The server sends a ServerHello message, containng the choosen protocol version and cipher suite
+* The server sends a ServerHello message, containng the chosen protocol version and cipher suite
 * The server sends its certificate, containing the public key
 * The client verifies the certificate and all intermediate certificates against its list of installed root CAs
 * If the client cannot verify the certificate, it aborts the connection or displays a warning, depending on the type and the settings of the client 
