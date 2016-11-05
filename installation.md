@@ -43,8 +43,16 @@ Before installing the plugin, stop your ES node(s) if necessary.
 
 SG SSL can be installed it like any [other Elasticsearch](https://www.elastic.co/guide/en/elasticsearch/plugins/2.2/plugin-management.html) plugin. Change to the installation directory of ES, and execute:
 
+**For Elasticsearch 2.x:**
+
 ```
 bin/plugin install com.floragunn/search-guard-ssl/<version>
+```
+
+**For Elasticsearch 5.x:**
+
+```
+bin/elasticsearch-plugin install com.floragunn/search-guard-ssl/<version>
 ```
 
 "&lt;version&gt;" is for example 2.3.2.9 (NOT v2.3.2.9)
@@ -73,9 +81,18 @@ for descriptions of what these permissions allow and the associated risks.
 
 Alternatively, you can download the **zip** from [Maven Central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-ssl%22) and install it offline by typing: 
 
+**For Elasticsearch 2.x:**
+
 ```
 bin/plugin install file:///path/to/search-guard-ssl-<version>.zip
 ```
+
+**For Elasticsearch 5.x:**
+
+```
+bin/elasticsearch-plugin install file:///path/to/search-guard-ssl-<version>.zip
+```
+
 ## Next steps
 
 After performing these steps, SG SSL is installed. Next:
