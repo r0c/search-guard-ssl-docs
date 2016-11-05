@@ -66,11 +66,9 @@ keytool  \
     -noprompt -alias root-ca
 ```
 
-In both cases, distribute the generated `truststore.jks` file to the `config` directory of all participating nodes of your cluster.
-
 ## Creating and signing CSRs
 
-A certificate signing request is a block of encrypted text, usually, but not always, generated on the server where you plan to use the certificate. It contains information about your organization, and the public key to be used with the certificate. 
+A certificate signing request is a block text, usually, but not always, generated on the server where you plan to use the certificate. It contains information about your organization, and the public key to be used with the certificate. 
 
 If you want to obtain a certificate you can use on a server, or, in this case, on a ES node, you:
 
@@ -82,8 +80,8 @@ This needs to be done for each node separately.
 
 For a tutorial how to create CSRs, please see here: [https://www.digicert.com/csr-creation.htm](https://www.digicert.com/csr-creation.htm). 
 
-You need to create a CSR for each node in your cluser. In the following "NODE_NAME" stands for the name of your ES node. You can pick any name you like here, for example `mycompany-elk-node-1`.
-
+You need to create a CSR for each node in your cluser. In the following "NODE_NAME" stands for the hostname of your ES node.
+ 
 If you are familiar with OpenSSL you can use the following command directly to generate a CSR and private key:
 
 ```

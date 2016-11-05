@@ -14,15 +14,25 @@ First, [install SG SSL](installation.md) for your particular ES version on each 
 
 ## Generating the keystore and truststore
 
-For SSL to work, you have to have a **keystore** and a **truststore** containing all required certificates and keys on each node. SG comes with scripts that will generate all these required files for you. The scripts have been tested on Linux and OSX.
+For SSL to work, you have to have a **keystore** and a **truststore** containing all required certificates and keys on each node. If you  have knowledge about TLS, or already a PKI infrastructure in place, you can generate the required certificates on your own. Otherwise you can use one of the following methods:
 
-In particular, the scripts will generate a truststore file containing a generated root certificate. This truststore file can be used on all nodes equally and has to be copied to the `config` directory on all nodes manually.
+### Using the TLS generator service
 
-The script will also create three keystore files. Each node has to have its own, dedicated keystore file, since it contains the nodes own certificate plus its private key. For each node, copy one of the generated keystore files to the `config` directory manually.
+We have set up a web-based service to generate all required artefacts for you. You need to provide your email address and organisation name, and can specify up to 10 hostnames. The certificates, key- and truststore files are generated in the background, and we'll send you a download link once everything is ready.
 
-In addition, certificates for the REST layer to be installed on your browser are also generated. These cetificates are only needed if you enable client authentication in the SG SSL configuration.
+We need your email to send the download link, while the organisation name will become part of the generated root CA.
 
-The script uses OpenSSL for generating all required artifacts. If you do not have OpenSSL already installed on your machine, please do so. If you cannot use OpenSSL on your machine, you'll need to find some other ways to obtain the required files. In this case, lease refer to the chapter [Certificates](certificates.md). 
+You should generate one certificate per Elasticsearch node.
+
+You can find the TLS generator service here:
+
+[TLS certificate generator](https://floragunn.com/tls-certificate-generator/)
+
+### Using the example PKI scripts
+
+SG comes with scripts that will generate all required files for you. The scripts have been tested on Linux and OSX.
+
+The script uses OpenSSL for generating all required artifacts. If you do not have OpenSSL already installed on your machine, please do so. If you cannot use OpenSSL on your machine, you'll need to find some other ways to obtain the required files, or use the TLS certificate generator service mentioned above. In this case, please refer to the chapter [Certificates](certificates.md). 
 
 In order to find out if you have OpenSSL installed, open a terminal and type
 
@@ -30,12 +40,13 @@ In order to find out if you have OpenSSL installed, open a terminal and type
 openssl version
 ```
 
-If installed, this should print out the version number of your OpenSSL installation.
-Make sure it's at least version 1.0.1k.
+If installed, this should print out the version number of your OpenSSL installation. Make sure its at least version 1.0.1k.
+
+The scripts will generate a truststore file containing a generated root certificate. The truststore file can be used on all nodes equally.
 
 In order to generate the required artifacts, please execute the following steps:
 
-### Download SG SSL or clone the repository
+#### Download SG SSL or clone the repository
 
 In order to obtain and run the scripts, you need to download the SG SSL source code onto your machine.
 
@@ -71,7 +82,7 @@ Use the "Download as zip" button to download the archive:
 
 Save and unzip the archive in a directory of your choice.
 
-### Execute the example script
+#### Execute the example script
 
 Open a terminal and cd into the directory where you downloaded or extracted the SG SSL source code to. You'll find a folder called `example-pki-scripts`. Change to this folder.
 
@@ -86,15 +97,17 @@ Depending on your JDK type and `PATH` configuration, you may get this error afte
 
 Now that all required artifacts are in place, we need to copy them to Elasticsearch.
 
-Amongst others, the script generated a file called `truststore.jks`. Copy this file to the `config` directory of all ES nodes.
+On each node, place the `keystore.jks` and `truststore.jks` file in a directory readable by the user that runs Elasticsearch. Make sure that also the files are readable by this user. For simplicity, we use the `config` directory of Elasticsearch in this example.
 
-The script also generated three keystore files: 
+If you have used the example PKI script, it generated three keystore files: 
 
 * `node-0-keystore.jks`
 * `node-1-keystore.jks`
 * `node-2-keystore.jks`
 
-The keystore files are specific per node. Copy `node-0-keystore.jks` to the `config` directory of your first ES node, `node-1-keystore.jks` to the second and so forth.
+If you have used the TLS generator, the names of these files differ.
+
+The keystore files are specific per node. Copy `node-0-keystore.jks` to the `config` directory of your first ES node, `node-1-keystore.jks` to the second and so forth. 
 
 The config directory of your first ES node should now look like:
 
@@ -139,14 +152,14 @@ And so on. While it **is** possible to use the same keystore file on each node, 
 
 ## Testing the installation
 
-Your nodes are now ready to talk SSL to each other! Just start ES as normal, and watch the logfile. The nodes should start up without error. You can safely ignore the following infos and warnings in the logfile:
+Your nodes are now ready to talk TLS to each other! Just start ES as normal, and watch the logfile. The nodes should start up without error. You can safely ignore the following infos and warnings in the logfile:
 
 ```
 INFO: Open SSL not available because of java.lang.ClassNotFoundException:
  org.apache.tomcat.jni.SSL
 ```
 
-This simply means that you use JCE (Java Cryptography extensions) as your SSL implementation. On startup, SG looks for OpenSSL support on your system. Since we have not installed it yet, SG falls back to the built-in Java SSL implementation.
+This simply means that you use JCE (Java Cryptography extensions) as your TLS implementation. On startup, SG looks for OpenSSL support on your system. Since we have not installed it yet, SG falls back to the built-in Java SSL implementation.
 
 ```
 WARN: AES 256 not supported, max key length for AES is 128. 
@@ -165,7 +178,7 @@ We have not configured HTTPS for the REST-API yet, so you can still access ES vi
 http://127.0.0.1:9200/
 ```
 
-This should give you some information about ES in JSON format. You can also display some configuration information from SG SSL directly by visiting:
+You can display some configuration information from SG SSL directly by visiting:
 
 ```
 http://127.0.0.1:9200/_searchguard/sslinfo?pretty

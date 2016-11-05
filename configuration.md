@@ -16,15 +16,15 @@ Enable or disable node-to-node ssl encryption. (Optional, default: true)
 
 ### Keystore
 
-**searchguard.ssl.transport.keystore_type: (PKCS12/JKS)**
+**searchguard.ssl.transport.keystore\_type: (PKCS12/JKS)**
 
 The type of the keystore file, JKS or PKCS12 (Optional, default: JKS)
 
-**searchguard.ssl.transport.keystore_filepath: keystore_node1.jks**
+**searchguard.ssl.transport.keystore\_filepath: keystore\_node1.jks**
 
 Path to the keystore file, relative to the `config/` directory (mandatory)
 
-**searchguard.ssl.transport.keystore_alias: my_alias**
+**searchguard.ssl.transport.keystore\_alias: my\_alias**
 
 Alias name (Optional, default: first alias which could be found)
 
@@ -42,7 +42,7 @@ The type of the truststore file, JKS or PKCS12 (default: JKS)
 
 Path to the truststore file, relative to the `config/` directory (mandatory)
 
-**searchguard.ssl.transport.truststore_alias: my_alias**
+**searchguard.ssl.transport.truststore\_alias: my\_alias**
 
 Alias name (default: first alias which could be found)
 
@@ -52,17 +52,17 @@ Truststore password (default: changeit)
 
 ### Hostname verification
 
-**searchguard.ssl.transport.enforce_hostname_verification: true**
+**searchguard.ssl.transport.enforce\_hostname\_verification: true**
 
 Enforce hostname verification (default: true). 
 
-**searchguard.ssl.transport.resolve_hostname: true**
+**searchguard.ssl.transport.resolve\_hostname: true**
 
 If hostname verification is enabled, specify whether the hostname should be resolved against DNS (default: true).
 
 ### Open SSL
 
-**searchguard.ssl.transport.enable_openssl_if_available: false**
+**searchguard.ssl.transport.enable\_openssl\_if\_available: false**
 
 Use native Open SSL instead of JDK SSL if available (default: true)
 
@@ -80,15 +80,15 @@ Enable or disable REST layer security (https), (default: false)
 
 The type of the keystore file JKS or PKCS12 (default: JKS)
 
-**searchguard.ssl.http.keystore_filepath: keystore_https_node1.jks**
+**searchguard.ssl.http.keystore\_filepath: keystore\_https\_node1.jks**
 
 Path to the keystore file, relative to the `config/` directory (mandatory)
 
-**searchguard.ssl.http.keystore_alias: my_alias**
+**searchguard.ssl.http.keystore\_alias: my\_alias**
 
 Alias name (default: first alias which could be found)
 
-**searchguard.ssl.http.keystore_password: changeit**
+**searchguard.ssl.http.keystore\_password: changeit**
 
 Keystore password (default: changeit)
 
@@ -98,26 +98,26 @@ Keystore password (default: changeit)
 
 The type of the truststore file JKS or PKCS12 (default: JKS)
 
-**searchguard.ssl.http.truststore_filepath: truststore_https.jks**
+**searchguard.ssl.http.truststore\_filepath: truststore_https.jks**
 
 Path to the truststore file, relative to the `config/` directory (mandatory)
 
-**searchguard.ssl.http.truststore_alias: my_alias**
+**searchguard.ssl.http.truststore\_alias: my_alias**
 
 Alias name (default: first alias which could be found)
 
-**searchguard.ssl.http.truststore_password: changeit**
+**searchguard.ssl.http.truststore\_password: changeit**
 
 Truststore password (default: changeit)
 
 ### OpenSSL
 
-**searchguard.ssl.http.enable_openssl_if_available: false**
+**searchguard.ssl.http.enable\_openssl\_if\_available: false**
 
 Use native Open SSL instead of JDK SSL if available (default: true)
 
 ### Client authentication
 
-**searchguard.ssl.http.clientauth_mode: REQUIRE**
+**searchguard.ssl.http.clientauth\_mode: REQUIRE**
 
 Do the clients (typically the browser or the proxy) have to authenticate themself to the http server? To enforce authentication use REQUIRE, to completely disable client certificates use NONE, to use authentication when a certificate is availabl on the browser, use OPTIONAL. Default is OPTIONAL.

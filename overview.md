@@ -13,15 +13,15 @@ Search Guard® SSL is a plugin for Elasticsearch which provides SSL/TLS encrypti
 
 The only external dependency is Netty 4 (and Tomcat Native if Open SSL is used).
 
-Search Guard SSL is the foundation layer of Search Guard 2, which offers authentication and authorization on top of Search Guard SSL. Search Guard is also available as an Elasticsearch plugin from floragunn. You can find the github repository for Search Guard 2 [here](https://github.com/floragunncom/search-guard).
+Search Guard SSL is the foundation layer of Search Guard, which offers authentication and authorization on top of Search Guard SSL. Search Guard is also available as an Elasticsearch plugin from floragunn. You can find the github repository for Search Guard [here](https://github.com/floragunncom/search-guard).
 
-If you just need to encrypt your traffic, and make sure only trusted nodes and clients can join and access a cluster, Search Guard SSL is all you require. If you need authentication and authorization, you need both Search Guard SSL + Search Guard 2.
+If you just need to encrypt your traffic, and make sure only trusted nodes and clients can join and access a cluster, Search Guard SSL is all you require. If you need authentication and authorization in addition, you need both Search Guard SSL + Search Guard.
 
 In this document the following abbreviations are being used:
 
 * ES: Elasticsearch
 * SG SSL: Search Guard SSL
-* SG: Search Guard 2
+* SG: Search Guard
  
 This documentation refers only to Search Guard SSL 2.0 and above. Search Guard for ES 1.x is not actively maintained anymore.
 
@@ -40,7 +40,7 @@ By using TLS the traffic between ES nodes and ES clients will be encrypted. Whic
 * you can be sure that nobody is spying on the traffic
 * you can be sure that nobody tampered with the traffic
 
-However by using SSL certificates you can also make sure that **only identified and trusted nodes or clients** can interact with the cluster.
+However by using TLS certificates you can also make sure that **only identified and trusted nodes or clients** can interact with the cluster.
 
 To make this efficient SG SSL can use Open SSL as the SSL implementation.  
 
