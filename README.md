@@ -6,6 +6,8 @@ Copryight 2016 floragunn UG (haftungsbeschränkt)
 
 This is the official documentation for Search Guard 2 SSL and Search Guard 5 SSL. If you find any errors, or want to contribute, feel free to fork this repository and issue pull requests.
 
+floragunn GmbH is not affiliated with Elasticsearch BV. Elasticsearch, Kibana, Logstash, and Beats are trademarks of Elasticsearch BV, registered in the U.S. and in other countries.
+
 Copyright 2016 floragunn UG (haftungsbeschränkt)
 
 ## Table of contents
