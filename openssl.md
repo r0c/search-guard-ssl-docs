@@ -17,8 +17,14 @@ To enable native support for Open SSL follow these steps:
 * Install Apache Portable Runtime (libapr1) on every node
  * [https://apr.apache.org](https://apr.apache.org)
  * On Ubuntu, Apache Portable Runtime can be installed with `sudo apt-get install libapr1`
-* Download netty-tcnative 1.1.33.Fork17 .jar for **your** platform 
+* Download netty-tcnative for **your** platform and Search Guard version
+* **Search Guard 2:**
+ * Version: 1.1.33.Fork17
  * http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork17/version, where version is one of `_linux-x86.jar_`, `_64-fedora.jar_`, `_osx-x86_64.jar_`
+ or `_windows-x86_64.jar_` 
+* **Search Guard 5:**
+ * Version: 1.1.33.Fork23
+ * http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23/version, where version is one of `_linux-x86.jar_`, `_64-fedora.jar_`, `_osx-x86_64.jar_`
  or `_windows-x86_64.jar_`
 * Put it into the elasticsearch `plugins/searchguard-ssl/` folder (on every node of course)
 * If you update the plugin (or re-install it after removal) don't forget to add netty-tcnative .jar again
@@ -30,11 +36,12 @@ To enable native support for Open SSL follow these steps:
 
 **(Only works for linux, does not need Open SSL/Apache Portable Runtime to be installed)**
 
-
-
-* Download [netty-tcnative-openssl-static-1.1.33.Fork16-fg01-linux-x86_64.jar
+* **Search Guard 2:**
+ * Download [netty-tcnative-openssl-static-1.1.33.Fork16-fg01-linux-x86_64.jar
 ](https://github.com/floragunncom/sg-assets/blob/master/netty-tcnative-openssl-static-linux-x86_64/netty-tcnative-openssl-static-1.1.33.Fork16-fg01-linux-x86_64.jar?raw=true) 
-* Follow step 4-7 above
+* **Search Guard 5:**
+ * Not available yet.
+* Follow step 6-8 above
 
 ## Troubleshooting 
 
