@@ -49,13 +49,15 @@ SG SSL can be installed it like any [other Elasticsearch](https://www.elastic.co
 bin/plugin install com.floragunn/search-guard-ssl/<version>
 ```
 
+"&lt;version&gt;" is for example 2.3.2.17 (NOT v2.3.2.17)
+
 **For Elasticsearch 5.x:**
 
 ```
-bin/elasticsearch-plugin install com.floragunn/search-guard-ssl/<version>
+bin/elasticsearch-plugin install -b com.floragunn:search-guard-ssl:<version>
 ```
 
-"&lt;version&gt;" is for example 2.3.2.9 (NOT v2.3.2.9)
+"&lt;version&gt;" is for example 5.0.0-17 (NOT v5.0.0-17)
 
 Example:
 
