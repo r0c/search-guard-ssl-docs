@@ -18,6 +18,10 @@ To enable native support for Open SSL follow these steps:
  * [https://apr.apache.org](https://apr.apache.org)
  * On Ubuntu, Apache Portable Runtime can be installed with `sudo apt-get install libapr1`
 * Download netty-tcnative for **your** platform and Search Guard version
+ * Linux (non fedora based): `_linux-x86.jar_` (Debian, Ubuntu, ...) 
+ * Fedora based linux: `_64-fedora.jar_` (RHEL, CentOS)
+ * Mac: `_osx-x86_64.jar_`
+ * Windows: `_windows-x86_64.jar_`
 * **Search Guard 2:**
  * Version: 1.1.33.Fork17
  * http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork17/version, where version is one of `_linux-x86.jar_`, `_64-fedora.jar_`, `_osx-x86_64.jar_`
