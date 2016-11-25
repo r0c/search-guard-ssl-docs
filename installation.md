@@ -65,8 +65,7 @@ Example:
 bin/plugin install com.floragunn/search-guard-ssl/2.3.2.9
 ```
 
-Accept the following warning message by typing "y" (since ES >= 2.2)
-
+Since ES 2.2, you will see the following warning message when installating Search Guard. For some ES versions, you need to actively confirm it by pressing 'y':
 
 ```
 @@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@@
@@ -80,6 +79,14 @@ Accept the following warning message by typing "y" (since ES >= 2.2)
 See http://docs.oracle.com/javase/8/docs/technotes/guides/security/permissions.html
 for descriptions of what these permissions allow and the associated risks.
 ```
+
+In any case, if you see 
+
+```
+Installed search-guard-ssl into /usr/share/elasticsearch/plugins/search-guard-ssl
+```
+
+Search Guard SSL was installed correctly.
 
 Alternatively, you can download the **zip** from [Maven Central](http://search.maven.org/#search%7Cgav%7C1%7Cg%3A%22com.floragunn%22%20AND%20a%3A%22search-guard-ssl%22) and install it offline by typing: 
 
