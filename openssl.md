@@ -14,7 +14,7 @@ To enable native support for Open SSL follow these steps:
 
 * Install latest OpenSSL version on every node (make sure its at least version 1.0.1k.)
  *  [https://www.openssl.org/community/binaries.html](https://www.openssl.org/community/binaries.html)
-* Install Apache Portable Runtime (libapr1) on every node
+* Install APR - Apache Portable Runtime (libapr1) on every node
  * [https://apr.apache.org](https://apr.apache.org)
  * On Ubuntu, Apache Portable Runtime can be installed with `sudo apt-get install libapr1`
 * Download netty-tcnative for **your** platform and Search Guard version
@@ -22,11 +22,12 @@ To enable native support for Open SSL follow these steps:
  * Version: 1.1.33.Fork17
  * http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork17/version, where version is one of `_linux-x86.jar_`, `_64-fedora.jar_`, `_osx-x86_64.jar_`
  or `_windows-x86_64.jar_` 
+ * Put it into the elasticsearch `plugins/searchguard-ssl/` folder (on every node of course)
 * **Search Guard 5:**
  * Version: 1.1.33.Fork23
  * http://repo1.maven.org/maven2/io/netty/netty-tcnative/1.1.33.Fork23/version, where version is one of `_linux-x86.jar_`, `_64-fedora.jar_`, `_osx-x86_64.jar_`
  or `_windows-x86_64.jar_`
-* Put it into the elasticsearch `plugins/searchguard-ssl/` folder (on every node of course)
+ * Put it into the elasticsearch `plugins/search-guard-5/` folder (on every node of course)
 * If you update the plugin (or re-install it after removal) don't forget to add netty-tcnative .jar again
 * Check that you have enabled OpenSSL in the configuration
  * `searchguard.ssl.transport.enable_openssl_if_available: true`
@@ -40,7 +41,8 @@ To enable native support for Open SSL follow these steps:
  * Download [netty-tcnative-openssl-static-1.1.33.Fork16-fg01-linux-x86_64.jar
 ](https://github.com/floragunncom/sg-assets/blob/master/netty-tcnative-openssl-static-linux-x86_64/netty-tcnative-openssl-static-1.1.33.Fork16-fg01-linux-x86_64.jar?raw=true) 
 * **Search Guard 5:**
- * Not available yet.
+ * Download [netty-tcnative-openssl-static-1.1.33.Fork23-linux-x86_64.jar
+](https://github.com/floragunncom/sg-assets/blob/master/netty-tcnative-openssl-static-linux-x86_64/netty-tcnative-openssl-static-1.1.33.Fork23-linux-x86_64.jar?raw=true)
 * Follow step 6-8 above
 
 ## Troubleshooting 
