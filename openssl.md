@@ -12,6 +12,7 @@ To enable native support for Open SSL follow these steps:
 
 **(Open SSL and Apache Portable Runtime needs to be installed)**
 
+* If you are on Alpine Linux pls. refer to [this post](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/search-guard/dLr4SYeDMOE/915APogFBQAJ)
 * Install latest OpenSSL version on every node (make sure its at least version 1.0.1k.)
  *  [https://www.openssl.org/community/binaries.html](https://www.openssl.org/community/binaries.html)
 * Install APR - Apache Portable Runtime (libapr1) on every node
@@ -67,6 +68,10 @@ If you face one of the following messages OpenSSL is not available and Search Gu
 ###java.lang.UnsatisfiedLinkError
 * OpenSSL is not installed, see above
 * Apache Portable Runtime (APR) is not installed, see above
+
+###Alpine Linux
+Alpine Linux does not work out of the box. You need to compile the tc-native library yourself.
+Pls. refer to [this post](https://groups.google.com/forum/?utm_medium=email&utm_source=footer#!msg/search-guard/dLr4SYeDMOE/915APogFBQAJ) and this github repository https://github.com/pires/netty-tcnative-alpine
 
 ###Further reading
 * More about netty-tcnative can be found here: 
