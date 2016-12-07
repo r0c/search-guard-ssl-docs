@@ -27,7 +27,7 @@ This documentation refers only to Search Guard SSL 2.0 and above. Search Guard f
 
 ## For the impatient
 
-If you just want to get up and running quickly, please refer to the  [installation guide](installation.md) and the [quickstart tutorial](quick_start.md)
+If you just want to get up and running quickly, please refer to the  [installation guide](installation.md) and the [quickstart tutorial](quickstart.md)
 
 ## Motivation
 
